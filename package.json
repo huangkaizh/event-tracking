@@ -1,6 +1,6 @@
 {
-  "name": "event-tracking",
-  "version": "1.0.0",
+  "name": "web-event-tracking",
+  "version": "1.0.1",
   "description": "event tracking in web",
   "main": "./dist/index.js",
   "scripts": {
@@ -12,11 +12,12 @@
     "url": "git+https://github.com/huangkaizh/event-tracking.git"
   },
   "keywords": [
+    "web-event-tracking",
     "event",
     "tracking",
     "web"
   ],
-  "author": "Huang Zhi",
+  "author": "huangkaizh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/huangkaizh/event-tracking/issues"
