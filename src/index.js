@@ -213,7 +213,6 @@
       browser['chrome'] = s[1]
       var type = _getChromiumType(browser['chrome'])
       if (type) {
-        browser['chrome'] += '(' + type + ')'
         browser['type'] = type
       }
     } else if ((s = ua.match(/opera.([\d.]+)/))) {
@@ -230,9 +229,6 @@
     }
 
     var system = {}
-
-    // detect platform
-    //        var p = navigator.platform.toLowerCase();
     if (ua.indexOf('iphone') > -1) {
       system.name = 'iphone'
       system.iphone = getIOSVersion(ua)
@@ -432,10 +428,6 @@ var tracking = {
   getCommonParams: function() {
     var distinctId = this.getDistinctId()
     var browser = this.getBrowser()
-    console.log('browser: ', browser)
-
-    var ua = navigator.userAgent.toLowerCase()
-    console.log('ua: ', ua)
     var time = this.getTime()
     var source = this.getSource()
     var commonParams = {
@@ -445,7 +437,6 @@ var tracking = {
       browser: browser
     }
     if (tracking.phone) commonParams.phone = tracking.phone
-    console.log('commonParams: ', commonParams)
     return commonParams
   },
 
@@ -469,13 +460,13 @@ var tracking = {
 
   post: function(url, headers, params, callback) {
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', url)
+    xhr.open('post', url)
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           var responseText = xhr.responseText // 返回结果
           var res = JSON.parse(responseText)
-          if (res.errcode === '0000') {
+          if (res.code === '200') {
             if (callback) callback(res)
           } else {
             console.log(res.msg)
