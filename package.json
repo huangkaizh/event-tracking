@@ -1,0 +1,31 @@
+{
+  "name": "event-tracking",
+  "version": "1.0.0",
+  "description": "event tracking in web",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist && minify dist/index.js > dist/index.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huangkaizh/event-tracking.git"
+  },
+  "keywords": [
+    "event",
+    "tracking",
+    "web"
+  ],
+  "author": "Huang Zhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huangkaizh/event-tracking/issues"
+  },
+  "homepage": "https://github.com/huangkaizh/event-tracking#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "minify": "^5.1.1"
+  }
+}
