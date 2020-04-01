@@ -2,7 +2,7 @@
 
 > 中琛魔方 web 埋点
 
-[查看demo]https://github.com/huangkaizh/vue-base-tracking)
+[查看 demo](https://github.com/huangkaizh/vue-base-tracking)
 
 ### 引入方法：
 
