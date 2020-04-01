@@ -2,12 +2,14 @@
 
 > 中琛魔方 web 埋点
 
-### 引入方法：  
-##### script 标签  
-[github 下载 index.min.js](https://github.com/huangkaizh/event-tracking/blob/master/dist/index.min.js)  
+### 引入方法：
+
+##### script 标签
+
+[下载 index.min.js](https://github.com/huangkaizh/event-tracking/blob/master/dist/index.min.js)
 
 ```
-<script src="./lib/web-event-tracking/index.min.js"></script>  
+<script src="./lib/web-event-tracking/index.min.js"></script>
 ```
 
 ##### es6
@@ -31,7 +33,8 @@ window.tracking.setConfig({
 })
 ```
 
-###方法说明：
+### 方法说明：
+
 ##### 1、点击事件
 
 ```
@@ -89,12 +92,12 @@ window.tracking.addEvent({
 window.trackingPost()
 ```
 
-### 后台推送数据接口  
-url: http://172.16.5.125:5140/pushdata  
-method:Post  
-dataFormat(数据格式):  
+### 后台推送数据接口
 
 ```
+url: http://172.16.5.125:5140/pushdata
+method:Post
+dataFormat(数据格式):
 {
     "appid": "e1a51f2257934e99",
     "token": "MzExNTg4NjkzNjMwNzc3\u003d",
@@ -126,6 +129,7 @@ dataFormat(数据格式):
 ```
 
 ### 各事件 json 格式
+
 ##### 1、点击事件：
 
 ```
