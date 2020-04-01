@@ -29,7 +29,7 @@ window.tracking.setConfig({
   distinctIdKey: 'distinctId', // cookie中用来存区分用户的key
   sourceKey: 'source', // url中用来标记来源渠道的key
   defaultSource: 'message', // 默认来源渠道
-  interval: 5000 // 发送间隔
+  interval: 5000 // 发送间隔，单位毫秒
 })
 ```
 
@@ -95,7 +95,7 @@ window.trackingPost()
 ### 后台推送数据接口
 
 ```
-url: http://172.16.5.125:5140/pushdata
+url: http://pushdata.zcmorefun.com/
 method:Post
 dataFormat(数据格式):
 {
@@ -144,7 +144,7 @@ dataFormat(数据格式):
         className: "submit-btn red", //目标元素 class
     },
     time: 12345678921, //点击事件客户端发生时间，long 型时间戳
-    currentUrl: "http://www.baidu.com?word=abc", //当前页面 url
+    currentUrl: "http://www.abc.com?word=abc", //当前页面 url
     distinctId: "1123", //区分用户的 ID,第一次打开页面时新建 uuid，存放在 cookie 中
     phone: "18812345236", //用户手机号
     source: "message", //渠道来源，message:短信, 自媒体: weMedia
