@@ -478,8 +478,8 @@ var tracking = {
   trackingPost: function() {
     if (!tracking.events || tracking.events.length === 0) return
     var params = {
-      appid: this.appid,
-      token: this.token,
+      appid: tracking.appid,
+      token: tracking.token,
       events: JSON.parse(JSON.stringify(tracking.events))
     }
     tracking.post(
@@ -586,6 +586,16 @@ window.onunload = function(e) {
   clearInterval(tracking.intervalId)
   tracking.intervalId = null
   tracking.trackingPost()
+  window.history.onpushstate = null
+  window.history.onreplacestate = null
+  window.onhashchange = null
+  window.onpopstate = null
+  window.onload = null
+  window.onbeforeunload = null
+  window.onload = null
+  window.onclick = null
+  window.tracking = null
+  tracking = null
 }
 
 window.onbeforeunload = function(e) {
@@ -604,5 +614,6 @@ window.onload = function(e) {
   })
   tracking.intervalId = setInterval(tracking.trackingPost, tracking.interval)
 }
+
 window.onclick = tracking.click
 window.tracking = tracking
