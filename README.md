@@ -2,22 +2,22 @@
 
 > 中琛魔方 web 埋点
 
-###引入方法：
-#####script 标签
-[github 下载 index.min.js](https://github.com/huangkaizh/event-tracking/blob/master/dist/index.min.js)
+### 引入方法：  
+##### script 标签  
+[github 下载 index.min.js](https://github.com/huangkaizh/event-tracking/blob/master/dist/index.min.js)  
 
 ```
-    <script src="./lib/web-event-tracking/index.min.js"></script>
+<script src="./lib/web-event-tracking/index.min.js"></script>  
 ```
 
-#####es6
+##### es6
 
 ```
-    npm i web-event-tracking -S
-    import 'web-event-tracking/dist/index.min'
+npm i web-event-tracking -S
+import 'web-event-tracking/dist/index.min'
 ```
 
-###修改默认配置：
+### 修改默认配置：
 
 ```
 window.tracking.setConfig({
@@ -32,67 +32,67 @@ window.tracking.setConfig({
 ```
 
 ###方法说明：
-#####1、点击事件
+##### 1、点击事件
 
 ```
-    window.tracking.click(e)
+window.tracking.click(e)
 ```
 
-#####2、跳转至第三方支付平台
+##### 2、跳转至第三方支付平台
 
 ```
-    window.tracking.toThirdPartyPayment('alipay')
+window.tracking.toThirdPartyPayment('alipay')
 ```
 
-#####3、跳转至家乐淘
+##### 3、跳转至家乐淘
 
 ```
-    window.tracking.toJLT()
+window.tracking.toJLT()
 ```
 
-#####4、设置手机号
+##### 4、设置手机号
 
 ```
-    window.tracking.setPhone('13512347852')
+window.tracking.setPhone('13512347852')
 ```
 
-#####5、验证码输入正确
+##### 5、验证码输入正确
 
 ```
-    window.tracking.submitRightCaptcha()
+window.tracking.submitRightCaptcha()
 ```
 
-#####6、验证码输入错误
+##### 6、验证码输入错误
 
 ```
-    window.tracking.submitWrongCaptcha()
+window.tracking.submitWrongCaptcha()
 ```
 
-#####7、切换验证码
+##### 7、切换验证码
 
 ```
-    window.tracking.switchCaptcha()
+window.tracking.switchCaptcha()
 ```
 
-#####8、添加自定义事件
+##### 8、添加自定义事件
 
 ```
-    window.tracking.addEvent({
-        event: 'customEvent', // 自定义事件名称
-        ... // 其他自定义属性
-    })
+window.tracking.addEvent({
+    event: 'customEvent', // 自定义事件名称
+    ... // 其他自定义属性
+})
 ```
 
-#####9、手动触发向服务器发送埋点数据（默认 5 秒发送一次，页面关闭时发送一次）
+##### 9、手动触发向服务器发送埋点数据（默认 5 秒发送一次，页面关闭时发送一次）
 
 ```
-    window.trackingPost()
+window.trackingPost()
 ```
 
-###后台推送数据接口
-url: http://172.16.5.125:5140/pushdata
-method:Post
-dataFormat(数据格式):
+### 后台推送数据接口  
+url: http://172.16.5.125:5140/pushdata  
+method:Post  
+dataFormat(数据格式):  
 
 ```
 {
@@ -125,8 +125,8 @@ dataFormat(数据格式):
 }
 ```
 
-###各事件 json 格式
-#####1、点击事件：
+### 各事件 json 格式
+##### 1、点击事件：
 
 ```
 {
@@ -159,7 +159,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####2、页面跳转：
+##### 2、页面跳转：
 
 ```
 {
@@ -185,7 +185,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####3、页面切换：
+##### 3、页面切换：
 
 ```
 {
@@ -211,7 +211,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####4、前进后退:
+##### 4、前进后退:
 
 ```
 {
@@ -236,7 +236,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####5、hash 切换：
+##### 5、hash 切换：
 
 ```
 {
@@ -262,7 +262,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####6、页面关闭后：
+##### 6、页面关闭后：
 
 ```
 {
@@ -287,7 +287,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####7、页面关闭前：
+##### 7、页面关闭前：
 
 ```
 {
@@ -312,7 +312,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####8、页面加载:
+##### 8、页面加载:
 
 ```
 {
@@ -337,7 +337,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####9、跳转至第三方支付
+##### 9、跳转至第三方支付
 
 ```
 {
@@ -362,7 +362,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####10、跳转至家乐淘
+##### 10、跳转至家乐淘
 
 ```
 {
@@ -386,7 +386,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####11、验证码输入正确
+##### 11、验证码输入正确
 
 ```
 {
@@ -410,7 +410,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####12、验证码输入错误
+##### 12、验证码输入错误
 
 ```
 {
@@ -434,7 +434,7 @@ dataFormat(数据格式):
 }
 ```
 
-#####13、切换验证码
+##### 13、切换验证码
 
 ```
 {
