@@ -337,11 +337,19 @@ var tracking = {
     }
     var pageWidth = document.documentElement.offsetWidth
     var pageHeight = document.documentElement.offsetHeight
+    var screenWidth = window.screen.width
+    var screenHeight = window.screen.height
+    var screenAvailWidth = window.screen.availWidth
+    var screenAvailHeight = window.screen.availHeight
     var currentUrl = window.location.href
     tracking.addEvent({
       event: 'click',
       pageWidth: pageWidth,
       pageHeight: pageHeight,
+      screenWidth: screenWidth,
+      screenHeight: screenHeight,
+      screenAvailWidth: screenAvailWidth,
+      screenAvailHeight: screenAvailHeight,
       position: position,
       targetEle: targetEle,
       currentUrl: currentUrl
@@ -559,7 +567,7 @@ window.history.onreplacestate = function(args) {
   })
 }
 
-window.onhashchange = function(e) {
+function onhashchange(e) {
   var currentUrl = e.newUrl
   var sourceUrl = e.oldUrl
   tracking.addEvent({
@@ -569,7 +577,7 @@ window.onhashchange = function(e) {
   })
 }
 
-window.onpopstate = function(e) {
+function onpopstate(e) {
   var currentUrl = e.target.location.href
   tracking.addEvent({
     event: 'popState',
@@ -577,7 +585,7 @@ window.onpopstate = function(e) {
   })
 }
 
-window.onunload = function(e) {
+function onunload(e) {
   var currentUrl = e.target.location.href
   tracking.addEvent({
     event: 'unload',
@@ -588,17 +596,17 @@ window.onunload = function(e) {
   tracking.trackingPost()
   window.history.onpushstate = null
   window.history.onreplacestate = null
-  window.onhashchange = null
-  window.onpopstate = null
-  window.onload = null
-  window.onbeforeunload = null
-  window.onload = null
-  window.onclick = null
+  window.removeEventListener('load', onload, false)
+  window.removeEventListener('beforeunload', onbeforeunload, false)
+  window.removeEventListener('unload', onunload, false)
+  window.removeEventListener('popstate', onpopstate, false)
+  window.removeEventListener('hashchange', onhashchange, false)
+  window.removeEventListener('click', tracking.click, false)
   window.tracking = null
   tracking = null
 }
 
-window.onbeforeunload = function(e) {
+function onbeforeunload(e) {
   var currentUrl = e.target.location.href
   tracking.addEvent({
     event: 'beforeUnload',
@@ -606,7 +614,7 @@ window.onbeforeunload = function(e) {
   })
 }
 
-window.onload = function(e) {
+function onload(e) {
   var currentUrl = e.target.location.href
   tracking.addEvent({
     event: 'load',
@@ -615,5 +623,12 @@ window.onload = function(e) {
   tracking.intervalId = setInterval(tracking.trackingPost, tracking.interval)
 }
 
-window.onclick = tracking.click
+window.addEventListener('load', onload, false)
+window.addEventListener('beforeunload', onbeforeunload, false)
+window.addEventListener('unload', onunload, false)
+window.addEventListener('popstate', onpopstate, false)
+window.addEventListener('hashchange', onhashchange, false)
+window.addEventListener('click', tracking.click, false)
+
+// window.onclick = tracking.click
 window.tracking = tracking
