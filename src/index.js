@@ -341,6 +341,8 @@ var tracking = {
     var screenHeight = window.screen.height
     var screenAvailWidth = window.screen.availWidth
     var screenAvailHeight = window.screen.availHeight
+    var windowInnerWidth = window.innerWidth
+    var windowInnerHeight = window.innerHeight
     var currentUrl = window.location.href
     tracking.addEvent({
       event: 'click',
@@ -350,6 +352,8 @@ var tracking = {
       screenHeight: screenHeight,
       screenAvailWidth: screenAvailWidth,
       screenAvailHeight: screenAvailHeight,
+      windowInnerWidth: windowInnerWidth,
+      windowInnerHeight: windowInnerHeight,
       position: position,
       targetEle: targetEle,
       currentUrl: currentUrl

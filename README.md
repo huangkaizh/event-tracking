@@ -137,9 +137,15 @@ dataFormat(数据格式):
 ```
 {
     event: "click",
-    pageWidth: 1080,
-    pageHeight: 2590,
-    position: [100, 200], //页面中的 xy 坐标
+    pageWidth: 1903, //html页面宽度，对应document.documentElement.offsetWidth
+	pageHeight: 3083, //html页面高度，对应document.documentElement.offsetHeight
+	screenWidth: 1920, //屏幕宽度，对应window.screen.width
+	screenHeight: 1080, //屏幕高度，对应window.screen.height
+	screenAvailWidth: 1920, //屏幕可用宽度，对应window.screen.availWidth
+	screenAvailHeight: 1040, //屏幕可用高度，对应window.screen.availHeight
+	windowInnerWidth: 1920, //窗口内部宽度，对应window.innerWidth
+	windowInnerHeight: 969, //窗口内部高度，对应window.innerHeight
+    position: [100, 200], //页面中的 xy 坐标，对应e.pageX和e.pageY
     targetEle: {
         nodeName: "DIV", //目标元素类型
         id: "submit", //目标元素 ID
