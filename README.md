@@ -1,6 +1,6 @@
 # web-event-tracking
 
-> 中琛魔方 web 埋点
+> web 埋点
 
 [查看 demo](https://github.com/huangkaizh/vue-base-tracking)
 
@@ -25,9 +25,9 @@ import 'web-event-tracking/dist/index.min'
 
 ```
 window.tracking.setConfig({
-  trackingServerUrl: 'http://pushdata.zcmorefun.com/', // 埋点服务器接口url
-  appid: 'e1a51f2257934e99',
-  token: 'MzExNTg4NjkzNjMwNzc3\u003d',
+  trackingServerUrl: 'http://tracking.abc.com/', // 埋点服务器接口url
+  appid: 'b1651f4562174c06',
+  token: 'kgfk8i987kgfkjhwer\u1234',
   distinctIdKey: 'distinctId', // cookie中用来存区分用户的key
   sourceKey: 'source', // url中用来标记来源渠道的key
   defaultSource: 'message', // 默认来源渠道
@@ -97,7 +97,7 @@ window.trackingPost()
 ### 后台推送数据接口
 
 ```
-url: http://pushdata.zcmorefun.com/
+url: http://tracking.abc.com/
 method:Post
 dataFormat(数据格式):
 {
