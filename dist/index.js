@@ -331,7 +331,7 @@
 
 var tracking = {
   // trackingServerUrl: 'http://172.16.5.125:5140/pushdata', // 埋点服务器接口url
-  trackingServerUrl: 'http://pushdata.zcmorefun.com/',
+  trackingServerUrl: 'http://tracking.abc.com/',
   appid: 'e1a51f2257934e99',
   token: "MzExNTg4NjkzNjMwNzc3=",
   distinctIdKey: 'distinctId',
