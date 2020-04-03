@@ -3,35 +3,33 @@
 /* eslint-disable no-cond-assign */
 
 /* eslint-disable no-unused-expressions */
-;
-
 (function () {
-  var packageName = 'brw';
+  var packageName = "brw";
 
   if (!window[packageName]) {
     window[packageName] = {};
-    window[packageName]['browserInfo'] = {};
+    window[packageName]["browserInfo"] = {};
   }
 
   var MAX_360_CHROME_VERSION = 69; // 以360极速浏览器的最大内核版本为准
 
   function getIOSVersion(ua) {
     if (/cpu (?:iphone )?os (\d+_\d+)/.test(ua)) {
-      return parseFloat(RegExp.$1.replace('_', '.'));
+      return parseFloat(RegExp.$1.replace("_", "."));
     } else {
       return 2;
     }
   }
 
   var browser360 = {
-    result: 'Chrome',
+    result: "Chrome",
     details: {
       Chrome: 5,
       Chromium: 0,
       _360SE: 0,
       _360EE: 0
     },
-    sorted: ['Chrome', '360SE', '360EE', 'Chromium'],
+    sorted: ["Chrome", "360SE", "360EE", "Chromium"],
     check: function check() {
       var init = {
         Chrome: 5,
@@ -65,16 +63,16 @@
 
       for (var r in plugins) {
         if (pluginFrom = /^(.+) PDF Viewer$/.exec(plugins[r].name)) {
-          if (pluginFrom[1] === 'Chrome') {
+          if (pluginFrom[1] === "Chrome") {
             init.Chrome += 6;
             init._360SE += 6;
             maybe360 = 1;
-          } else if (pluginFrom[1] === 'Chromium') {
+          } else if (pluginFrom[1] === "Chromium") {
             init.Chromium += 10;
             init._360EE += 6;
             maybe360 = 1;
           }
-        } else if (plugins[r].filename === 'np-mswmp.dll') {
+        } else if (plugins[r].filename === "np-mswmp.dll") {
           init._360SE += 20;
           init._360EE += 20;
         }
@@ -104,8 +102,8 @@
       var m = {};
       m.Chrome = init.Chrome;
       m.Chromium = init.Chromium;
-      m['360SE'] = init._360SE;
-      m['360EE'] = init._360EE;
+      m["360SE"] = init._360SE;
+      m["360EE"] = init._360EE;
       var s = [];
 
       for (var u in m) {
@@ -117,7 +115,7 @@
       });
       this.sorted = s;
       this.details = init;
-      this.result = s[0][0] || '';
+      this.result = s[0][0] || "";
       return this.result.toLowerCase();
     }
   };
@@ -126,31 +124,31 @@
    */
 
   function _getShellerType() {
-    var brwType = '';
+    var brwType = "";
     var appVersion = window.navigator.appVersion;
     var external = window.external;
 
-    if (external && 'SEVersion' in external) {
+    if (external && "SEVersion" in external) {
       // 搜狗浏览器
-      brwType = 'sougou';
-    } else if (external && 'LiebaoGetVersion' in external) {
+      brwType = "sougou";
+    } else if (external && "LiebaoGetVersion" in external) {
       // 猎豹浏览器
-      brwType = 'liebao';
+      brwType = "liebao";
     } else if (/QQBrowser/.test(appVersion)) {
       // qq浏览器
-      brwType = 'qq';
+      brwType = "qq";
     } else if (/Maxthon/.test(appVersion)) {
       // 遨游浏览器
-      brwType = 'maxthon';
+      brwType = "maxthon";
     } else if (/TaoBrowser/.test(appVersion)) {
       // 淘宝浏览器
-      brwType = 'taobao';
+      brwType = "taobao";
     } else if (/BIDUBrowser/.test(appVersion)) {
       // 百度浏览器
-      brwType = 'baidu';
+      brwType = "baidu";
     } else if (/UBrowser/.test(appVersion)) {
       // UC浏览器
-      brwType = 'uc';
+      brwType = "uc";
     }
 
     return brwType;
@@ -171,26 +169,26 @@
 
 
   function _getChromiumType(version) {
-    if (window.scrollMaxX !== undefined) return '';
+    if (window.scrollMaxX !== undefined) return "";
 
     var chromeBrowserType = _getShellerType();
 
-    if (chromeBrowserType !== '') {
+    if (chromeBrowserType !== "") {
       return chromeBrowserType;
     }
 
-    if (window.navigator.vendor && window.navigator.vendor.indexOf('Opera') === 0) {
-      return 'opera';
+    if (window.navigator.vendor && window.navigator.vendor.indexOf("Opera") === 0) {
+      return "opera";
     }
 
     var p = navigator.platform.toLowerCase();
 
-    if (p.indexOf('mac') === 0 || p.indexOf('linux') === 0) {
-      return 'chrome';
+    if (p.indexOf("mac") === 0 || p.indexOf("linux") === 0) {
+      return "chrome";
     }
 
     if (parseInt(version) > MAX_360_CHROME_VERSION) {
-      return 'chrome';
+      return "chrome";
     }
 
     return browser360.check();
@@ -202,121 +200,121 @@
     var s;
 
     if (s = ua.match(/rv:([\d.]+)/)) {
-      browser.name = 'ie';
-      browser['ie'] = s[1];
+      browser.name = "ie";
+      browser["ie"] = s[1];
 
-      if (ua.indexOf('wow') > -1) {
-        browser['type'] = _getShellerType() ? _getShellerType() : '360';
+      if (ua.indexOf("wow") > -1) {
+        browser["type"] = _getShellerType() ? _getShellerType() : "360";
       } else {
-        browser['type'] = 'IE';
+        browser["type"] = "IE";
       }
     } else if (s = ua.match(/msie ([\d.]+)/)) {
-      browser.name = 'ie';
-      browser['ie'] = s[1];
+      browser.name = "ie";
+      browser["ie"] = s[1];
 
-      if (ua.indexOf('wow') > -1) {
-        browser['type'] = _getShellerType() ? _getShellerType() : '360';
+      if (ua.indexOf("wow") > -1) {
+        browser["type"] = _getShellerType() ? _getShellerType() : "360";
       } else {
-        browser['type'] = 'IE';
+        browser["type"] = "IE";
       }
     } else if (s = ua.match(/edge\/([\d.]+)/)) {
-      browser.name = 'edge';
-      browser['edge'] = s[1];
-      browser['type'] = 'edge';
+      browser.name = "edge";
+      browser["edge"] = s[1];
+      browser["type"] = "edge";
     } else if (s = ua.match(/firefox\/([\d.]+)/)) {
-      browser.name = 'firefox';
-      browser['firefox'] = s[1];
-      browser['type'] = 'firefox';
+      browser.name = "firefox";
+      browser["firefox"] = s[1];
+      browser["type"] = "firefox";
     } else if (s = ua.match(/chrome\/([\d.]+)/)) {
-      browser.name = 'chrome';
-      browser['chrome'] = s[1];
+      browser.name = "chrome";
+      browser["chrome"] = s[1];
 
-      var type = _getChromiumType(browser['chrome']);
+      var type = _getChromiumType(browser["chrome"]);
 
       if (type) {
-        browser['type'] = type;
+        browser["type"] = type;
       }
     } else if (s = ua.match(/opera.([\d.]+)/)) {
-      browser.name = 'opera';
-      browser['opera'] = s[1];
-      browser['type'] = 'opera';
+      browser.name = "opera";
+      browser["opera"] = s[1];
+      browser["type"] = "opera";
     } else if (s = ua.match(/version\/([\d.]+).*safari/)) {
-      browser.name = 'safari';
-      browser['safari'] = s[1];
-      browser['type'] = 'safari';
+      browser.name = "safari";
+      browser["safari"] = s[1];
+      browser["type"] = "safari";
     } else {
-      browser.name = 'unknown';
-      browser['unknow'] = 0;
+      browser.name = "unknown";
+      browser["unknow"] = 0;
     }
 
     var system = {};
 
-    if (ua.indexOf('iphone') > -1) {
-      system.name = 'iphone';
+    if (ua.indexOf("iphone") > -1) {
+      system.name = "iphone";
       system.iphone = getIOSVersion(ua);
-    } else if (ua.indexOf('ipod') > -1) {
-      system.name = 'ipod';
+    } else if (ua.indexOf("ipod") > -1) {
+      system.name = "ipod";
       system.ipod = getIOSVersion(ua);
-    } else if (ua.indexOf('ipad') > -1) {
-      system.name = 'ipad';
+    } else if (ua.indexOf("ipad") > -1) {
+      system.name = "ipad";
       system.ipad = getIOSVersion(ua);
-    } else if (ua.indexOf('nokia') > -1) {
-      system.name = 'nokia';
+    } else if (ua.indexOf("nokia") > -1) {
+      system.name = "nokia";
       system.nokia = true;
     } else if (/android (\d+(\.\d+)?)/.test(ua)) {
-      system.name = 'android';
+      system.name = "android";
       system.android = parseFloat(RegExp.$1);
-    } else if (ua.indexOf('win') > -1) {
-      system.name = 'win';
+    } else if (ua.indexOf("win") > -1) {
+      system.name = "win";
 
       if (/win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
-        if (RegExp['$1'] === 'nt') {
-          switch (RegExp['$2']) {
-            case '5.0':
-              system.win = '2000';
+        if (RegExp["$1"] === "nt") {
+          switch (RegExp["$2"]) {
+            case "5.0":
+              system.win = "2000";
               break;
 
-            case '5.1':
-              system.win = 'XP';
+            case "5.1":
+              system.win = "XP";
               break;
 
-            case '6.0':
-              system.win = 'Vista';
+            case "6.0":
+              system.win = "Vista";
               break;
 
-            case '6.1':
-              system.win = '7';
+            case "6.1":
+              system.win = "7";
               break;
 
-            case '6.2':
-              system.win = '8';
+            case "6.2":
+              system.win = "8";
               break;
 
-            case '6.3':
-              system.win = '8.1';
+            case "6.3":
+              system.win = "8.1";
               break;
 
-            case '10.0':
-              system.win = '10';
+            case "10.0":
+              system.win = "10";
               break;
 
             default:
-              system.win = 'NT';
+              system.win = "NT";
               break;
           }
-        } else if (RegExp['$1'] === '9x') {
-          system.win = 'ME';
+        } else if (RegExp["$1"] === "9x") {
+          system.win = "ME";
         } else {
-          system.win = RegExp['$1'];
+          system.win = RegExp["$1"];
         }
       }
-    } else if (ua.indexOf('mac') > -1) {
-      system.name = 'mac';
-    } else if (ua.indexOf('linux') > -1) {
-      system.name = 'linux';
+    } else if (ua.indexOf("mac") > -1) {
+      system.name = "mac";
+    } else if (ua.indexOf("linux") > -1) {
+      system.name = "linux";
     }
 
-    var str = system.name + (system[system.name] || '') + '|' + browser.name + browser[browser.name];
+    var str = system.name + (system[system.name] || "") + "|" + browser.name + browser[browser.name];
     var isMobile = system.android || system.iphone || system.ios || system.ipad || system.ipod || system.nokia;
     return {
       browser: browser,
@@ -326,19 +324,19 @@
     };
   }();
 
-  window[packageName]['browserInfo'] = client;
+  window[packageName]["browserInfo"] = client;
 })();
 
 var tracking = {
   // trackingServerUrl: 'http://172.16.5.125:5140/pushdata', // 埋点服务器接口url
-  trackingServerUrl: 'http://tracking.abc.com/',
-  appid: 'e1a51f2257934e99',
+  trackingServerUrl: "http://tracking.abc.com/",
+  appid: "e1a51f2257934e99",
   token: "MzExNTg4NjkzNjMwNzc3=",
-  distinctIdKey: 'distinctId',
+  distinctIdKey: "distinctId",
   // cookie中用来存用户ID的key
-  sourceKey: 'source',
+  sourceKey: "source",
   // url中用来标记来源渠道的key
-  defaultSource: 'message',
+  defaultSource: "message",
   // 默认来源渠道
   interval: null,
   // 发送间隔, 单位毫秒
@@ -368,7 +366,7 @@ var tracking = {
     var windowInnerHeight = window.innerHeight;
     var currentUrl = window.location.href;
     tracking.addEvent({
-      event: 'click',
+      event: "click",
       pageWidth: pageWidth,
       pageHeight: pageHeight,
       screenWidth: screenWidth,
@@ -384,14 +382,16 @@ var tracking = {
   },
   toThirdPartyPayment: function toThirdPartyPayment(thirdPartyPayment) {
     this.addEvent({
-      event: 'toThirdPartyPayment',
+      event: "toThirdPartyPayment",
       thirdPartyPayment: thirdPartyPayment // 第三方支付类别（微信、支付宝等）
 
     });
   },
-  toJLT: function toJLT() {
+  toExternalUrl: function toExternalUrl() {
     this.addEvent({
-      event: 'toJLT' // 跳转至家乐淘
+      event: "toExternalUrl",
+      // 跳转至某外链
+      externalUrl: "http://www.bcd.com" // 某外链
 
     });
   },
@@ -401,19 +401,19 @@ var tracking = {
   // 设置手机号
   submitRightCaptcha: function submitRightCaptcha() {
     this.addEvent({
-      event: 'submitRightCaptcha'
+      event: "submitRightCaptcha"
     });
   },
   // 验证码输入正确
   submitWrongCaptcha: function submitWrongCaptcha() {
     this.addEvent({
-      event: 'submitWrongCaptcha'
+      event: "submitWrongCaptcha"
     });
   },
   // 验证码输入错误
   switchCaptcha: function switchCaptcha() {
     this.addEvent({
-      event: 'switchCaptcha'
+      event: "switchCaptcha"
     });
   },
   // 切换验证码
@@ -430,10 +430,10 @@ var tracking = {
    */
   getQueryValue: function getQueryValue(queryName) {
     var query = decodeURI(window.location.search.substring(1));
-    var vars = query.split('&');
+    var vars = query.split("&");
 
     for (var i = 0; i < vars.length; i++) {
-      var pair = vars[i].split('=');
+      var pair = vars[i].split("=");
 
       if (pair[0] === queryName) {
         return pair[1];
@@ -459,32 +459,32 @@ var tracking = {
   },
   uuid: function uuid() {
     var s = [];
-    var hexDigits = '0123456789abcdef';
+    var hexDigits = "0123456789abcdef";
 
     for (var i = 0; i < 36; i++) {
       s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
     }
 
-    s[14] = '4'; // bits 12-15 of the time_hi_and_version field to 0010
+    s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
 
     s[19] = hexDigits.substr(s[19] & 0x3 | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
 
-    s[8] = s[13] = s[18] = s[23] = '-';
-    var uuid = s.join('');
+    s[8] = s[13] = s[18] = s[23] = "-";
+    var uuid = s.join("");
     return uuid;
   },
   setCookie: function setCookie(cname, cvalue) {
-    document.cookie = cname + '=' + cvalue + ';' + document.cookie;
+    document.cookie = cname + "=" + cvalue + ";" + document.cookie;
   },
   getCookie: function getCookie(cname) {
-    var name = cname + '=';
+    var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
+    var ca = decodedCookie.split(";");
 
     for (var i = 0; i < ca.length; i++) {
       var c = ca[i];
 
-      while (c.charAt(0) === ' ') {
+      while (c.charAt(0) === " ") {
         c = c.substring(1);
       }
 
@@ -493,7 +493,7 @@ var tracking = {
       }
     }
 
-    return '';
+    return "";
   },
   getCommonParams: function getCommonParams() {
     var distinctId = this.getDistinctId();
@@ -522,14 +522,14 @@ var tracking = {
       events: JSON.parse(JSON.stringify(tracking.events))
     };
     tracking.post(tracking.trackingServerUrl, {
-      'Content-Type': 'application/json' // 'Access-Control-Allow-Origin': '*'
+      "Content-Type": "application/json" // 'Access-Control-Allow-Origin': '*'
 
     }, JSON.stringify(params));
     tracking.events = [];
   },
   post: function post(url, headers, params, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open('post', url);
+    xhr.open("post", url);
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
@@ -539,7 +539,7 @@ var tracking = {
           if (!responseText) return;
           var res = JSON.parse(responseText);
 
-          if (res.code === '200') {
+          if (res.code === "200") {
             if (callback) callback(res);
           } else {
             console.log(res.msg);
@@ -565,7 +565,7 @@ var tracking = {
   var pushState = history.pushState;
 
   history.pushState = function () {
-    if (typeof history.onpushstate === 'function') {
+    if (typeof history.onpushstate === "function") {
       history.onpushstate(arguments);
     }
 
@@ -575,7 +575,7 @@ var tracking = {
   var replaceState = history.replaceState;
 
   history.replaceState = function () {
-    if (typeof history.onreplacestate === 'function') {
+    if (typeof history.onreplacestate === "function") {
       history.onreplacestate(arguments);
     }
 
@@ -587,7 +587,7 @@ window.history.onpushstate = function (args) {
   var currentUrl = window.location.href;
   var targetUrl = args[2];
   tracking.addEvent({
-    event: 'pushState',
+    event: "pushState",
     currentUrl: currentUrl,
     targetUrl: targetUrl
   });
@@ -597,7 +597,7 @@ window.history.onreplacestate = function (args) {
   var currentUrl = window.location.href;
   var targetUrl = args[2];
   tracking.addEvent({
-    event: 'replaceState',
+    event: "replaceState",
     currentUrl: currentUrl,
     targetUrl: targetUrl
   });
@@ -607,7 +607,7 @@ function onhashchange(e) {
   var currentUrl = e.newUrl;
   var sourceUrl = e.oldUrl;
   tracking.addEvent({
-    event: 'hashChange',
+    event: "hashChange",
     sourceUrl: sourceUrl,
     currentUrl: currentUrl
   });
@@ -616,7 +616,7 @@ function onhashchange(e) {
 function onpopstate(e) {
   var currentUrl = e.target.location.href;
   tracking.addEvent({
-    event: 'popState',
+    event: "popState",
     currentUrl: currentUrl
   });
 }
@@ -624,7 +624,7 @@ function onpopstate(e) {
 function onunload(e) {
   var currentUrl = e.target.location.href;
   tracking.addEvent({
-    event: 'unload',
+    event: "unload",
     currentUrl: currentUrl
   });
   clearInterval(tracking.intervalId);
@@ -632,12 +632,12 @@ function onunload(e) {
   tracking.trackingPost();
   window.history.onpushstate = null;
   window.history.onreplacestate = null;
-  window.removeEventListener('load', onload, false);
-  window.removeEventListener('beforeunload', onbeforeunload, false);
-  window.removeEventListener('unload', onunload, false);
-  window.removeEventListener('popstate', onpopstate, false);
-  window.removeEventListener('hashchange', onhashchange, false);
-  window.removeEventListener('click', tracking.click, false);
+  window.removeEventListener("load", onload, false);
+  window.removeEventListener("beforeunload", onbeforeunload, false);
+  window.removeEventListener("unload", onunload, false);
+  window.removeEventListener("popstate", onpopstate, false);
+  window.removeEventListener("hashchange", onhashchange, false);
+  window.removeEventListener("click", tracking.click, false);
   window.tracking = null;
   tracking = null;
 }
@@ -645,7 +645,7 @@ function onunload(e) {
 function onbeforeunload(e) {
   var currentUrl = e.target.location.href;
   tracking.addEvent({
-    event: 'beforeUnload',
+    event: "beforeUnload",
     currentUrl: currentUrl
   });
 }
@@ -653,17 +653,17 @@ function onbeforeunload(e) {
 function onload(e) {
   var currentUrl = e.target.location.href;
   tracking.addEvent({
-    event: 'load',
+    event: "load",
     currentUrl: currentUrl
   });
   tracking.intervalId = setInterval(tracking.trackingPost, tracking.interval);
 }
 
-window.addEventListener('load', onload, false);
-window.addEventListener('beforeunload', onbeforeunload, false);
-window.addEventListener('unload', onunload, false);
-window.addEventListener('popstate', onpopstate, false);
-window.addEventListener('hashchange', onhashchange, false);
-window.addEventListener('click', tracking.click, false); // window.onclick = tracking.click
+window.addEventListener("load", onload, false);
+window.addEventListener("beforeunload", onbeforeunload, false);
+window.addEventListener("unload", onunload, false);
+window.addEventListener("popstate", onpopstate, false);
+window.addEventListener("hashchange", onhashchange, false);
+window.addEventListener("click", tracking.click, false); // window.onclick = tracking.click
 
 window.tracking = tracking;
