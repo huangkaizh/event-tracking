@@ -49,10 +49,10 @@ window.tracking.click(e)
 window.tracking.toThirdPartyPayment('alipay')
 ```
 
-##### 3、跳转至家乐淘
+##### 3、跳转至某外链
 
 ```
-window.tracking.toJLT()
+window.tracking.toExternalUrl('http://www.bcd.com')
 ```
 
 ##### 4、设置手机号
@@ -374,11 +374,12 @@ dataFormat(数据格式):
 }
 ```
 
-##### 10、跳转至家乐淘
+##### 10、跳转至某外链
 
 ```
 {
-    event: "toJLT",
+    event: "toExternalUrl",
+    externalUrl: "http://www.bcd.com",
     distinctId: "1123", //区分用户的 ID,第一次打开页面时新建 uuid，存放在 cookie 中
     phone: "18812345236", //用户手机号
     source: "message", //渠道来源，message:短信, 自媒体: weMedia

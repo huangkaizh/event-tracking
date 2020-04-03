@@ -367,7 +367,7 @@ var tracking = {
   },
   toJLT: function() {
     this.addEvent({
-      event: 'toJLT' // 跳转至家乐淘
+      event: 'toJLT' // 跳转至某外链
     })
   },
   setPhone: function(phone) {
