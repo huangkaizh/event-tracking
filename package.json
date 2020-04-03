@@ -1,6 +1,6 @@
 {
   "name": "web-event-tracking",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "event tracking in web",
   "main": "dist/index.min.js",
   "scripts": {

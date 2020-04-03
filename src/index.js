@@ -311,10 +311,9 @@
 })();
 
 var tracking = {
-  // trackingServerUrl: 'http://172.16.5.125:5140/pushdata', // 埋点服务器接口url
-  trackingServerUrl: "http://tracking.abc.com/",
-  appid: "e1a51f2257934e99",
-  token: "MzExNTg4NjkzNjMwNzc3\u003d",
+  trackingServerUrl: 'http://tracking.abc.com/', // 埋点服务器接口url
+  appid: 'b1651f4562174c06',
+  token: 'kgfk8i987kgfkjhwer\u1234',
   distinctIdKey: "distinctId", // cookie中用来存用户ID的key
   sourceKey: "source", // url中用来标记来源渠道的key
   defaultSource: "message", // 默认来源渠道
